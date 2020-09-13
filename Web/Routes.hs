@@ -10,3 +10,7 @@ type instance ModelControllerMap WebApplication Post = PostsController
 instance AutoRoute CommentsController
 type instance ModelControllerMap WebApplication Comment = CommentsController
 
+instance AutoRoute UsersController
+type instance ModelControllerMap WebApplication User = UsersController
+
+instance AutoRoute SessionsController

@@ -33,3 +33,10 @@ INSERT INTO public.comments (id, post_id, author, body, created_at) VALUES ('738
 ALTER TABLE public.comments ENABLE TRIGGER ALL;
 
 
+ALTER TABLE public.users DISABLE TRIGGER ALL;
+
+
+
+ALTER TABLE public.users ENABLE TRIGGER ALL;
+
+

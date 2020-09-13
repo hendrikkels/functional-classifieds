@@ -7,6 +7,11 @@ import Application.Helper.Controller
 import IHP.ViewSupport
 import Generated.Types
 
+import IHP.LoginSupport.Types
+
+instance HasNewSessionUrl User where
+    newSessionUrl _ = "/NewSession"
+
 data WebApplication = WebApplication deriving (Eq, Show)
 
 data ViewContext = ViewContext
@@ -34,4 +39,21 @@ data CommentsController
     | EditCommentAction { commentId :: !(Id Comment) }
     | UpdateCommentAction { commentId :: !(Id Comment) }
     | DeleteCommentAction { commentId :: !(Id Comment) }
+    deriving (Eq, Show, Data)
+
+data UsersController
+    = UsersAction
+    | NewUserAction
+    | ShowUserAction { userId :: !(Id User) }
+    | CreateUserAction
+    | EditUserAction { userId :: !(Id User) }
+    | UpdateUserAction { userId :: !(Id User) }
+    | DeleteUserAction { userId :: !(Id User) }
+    deriving (Eq, Show, Data)
+
+
+data SessionsController
+    = NewSessionAction
+    | CreateSessionAction
+    | DeleteSessionAction
     deriving (Eq, Show, Data)
