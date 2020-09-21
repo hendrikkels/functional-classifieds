@@ -56,4 +56,5 @@ data SessionsController
     = NewSessionAction
     | CreateSessionAction
     | DeleteSessionAction
+    | HomeAction
     deriving (Eq, Show, Data)
