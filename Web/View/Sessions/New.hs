@@ -8,7 +8,6 @@ instance View (NewView User) ViewContext where
             <div class="d-flex align-items-center">
                 <div class="w-100">
                     <div style="max-width: 400px" class="mx-auto mb-5">
-                        {renderFlashMessages}
                         <h5>Please login:</h5>
                         {renderForm user}
                     </div>
