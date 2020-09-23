@@ -61,4 +61,12 @@ data SessionsController
     deriving (Eq, Show, Data)
 
 
-
+data ListingsController
+    = ListingsAction
+    | NewListingAction 
+    | ShowListingAction { listingId :: !(Id Listing) }
+    | CreateListingAction
+    | EditListingAction { listingId :: !(Id Listing) }
+    | UpdateListingAction { listingId :: !(Id Listing) }
+    | DeleteListingAction { listingId :: !(Id Listing) }
+    deriving (Eq, Show, Data)

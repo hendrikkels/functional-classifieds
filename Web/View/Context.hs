@@ -16,7 +16,7 @@ instance ViewSupport.CreateViewContext ViewContext where
     createViewContext = do
         flashMessages <- IHP.Controller.Session.getAndClearFlashMessages
         let viewContext = ViewContext {
-                requestContext = ?requestContext,
+            requestContext = ?requestContext,
                 user = currentUserOrNothing,
                 flashMessages,
                 controllerContext = ?controllerContext,

@@ -44,6 +44,7 @@ navbar = [hsx|
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
+      
       {sessionButtons}
     </ul>
     <form class="form-inline my-2 my-lg-0">
@@ -58,13 +59,12 @@ navbar = [hsx|
         sessionButtons :: Html
         sessionButtons = case (get #user viewContext) of
             Just user -> [hsx|<li class="nav-item">
-                                <a class="nav-link" href={NewPostAction}>Add listing</a>
-                              </li>
+                                <a class="nav-link" href={NewListingAction}>Add listing</a>
+                              </li> 
                               <li>
                                 <a class="js-delete js-delete-no-confirm nav-link" href={DeleteSessionAction}>Logout</a>
                               </li>|]
-            
-            Nothing -> [hsx|<li class="nav-item">
+            Nothing -> [hsx| <li class="nav-item">
                               <a class="nav-link" href={NewUserAction}>Register</a>
                             </li>
                             <li>

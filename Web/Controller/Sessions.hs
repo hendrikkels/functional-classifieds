@@ -7,7 +7,7 @@ import Web.View.Sessions.Home
 
 instance Controller SessionsController where
     action HomeAction = do
-        posts <- query @Post
+        listings <- query @Listing
             |> orderByDesc #createdAt
             |> fetch
         render HomeView { .. }
