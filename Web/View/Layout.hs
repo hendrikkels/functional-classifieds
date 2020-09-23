@@ -24,12 +24,53 @@ defaultLayout inner = H.docTypeHtml ! A.lang "en" $ [hsx|
     <title>App</title>
 </head>
 <body>
+    {navbar}
     <div class="container mt-4">
         {renderFlashMessages}
         {inner}
     </div>
 </body>
 |]
+
+
+navbar :: Html
+navbar = [hsx|
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+  <a class="navbar-brand" href="/">Functional Marketplace</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      {sessionButtons}
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+  </div>
+</nav>
+|]
+    where
+        sessionButtons :: Html
+        sessionButtons = case (get #user viewContext) of
+            Just user -> [hsx|<li class="nav-item">
+                                <a class="nav-link" href={NewPostAction}>Add listing</a>
+                              </li>
+                              <li>
+                                <a class="js-delete js-delete-no-confirm nav-link" href={DeleteSessionAction}>Logout</a>
+                              </li>|]
+            
+            Nothing -> [hsx|<li class="nav-item">
+                              <a class="nav-link" href={NewUserAction}>Register</a>
+                            </li>
+                            <li>
+                              <a class="nav-link" href={NewSessionAction}>Login</a>
+                            </li>|]
+
 
 scripts = do
     when (isDevelopment FrameworkConfig.environment) [hsx|<script id="livereload-script" src="/livereload.js"></script>|]
