@@ -1,7 +1,7 @@
 module Web.View.Users.Show where
 import Web.View.Prelude
 
-data ShowView = ShowView { user :: User }
+data ShowView = ShowView { user :: Include "listings" User }
 
 instance View ShowView ViewContext where
     html ShowView { .. } = [hsx|
@@ -12,7 +12,8 @@ instance View ShowView ViewContext where
             </ol>
         </nav>
         <h1>Show User</h1>
-        <a href={NewListingAction (get #id currentUser)}>Add Comment</a>
+        <a href={NewListingAction (get #id user)}>Add Comment</a>
+        <div>{forEach (get #listings user) renderListing}</div>
     |]
 
 

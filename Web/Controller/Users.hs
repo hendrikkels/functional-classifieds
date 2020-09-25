@@ -5,6 +5,7 @@ import Web.View.Users.Index
 import Web.View.Users.New
 import Web.View.Users.Edit
 import Web.View.Users.Show
+import qualified Text.MMark as MMark
 
 instance Controller UsersController where
     action UsersAction = do
@@ -17,6 +18,8 @@ instance Controller UsersController where
 
     action ShowUserAction { userId } = do
         user <- fetch userId
+            >>= pure . modify #listings (orderByDesc #createdAt)
+            >>= fetchRelated #listings
         render ShowView { .. }
 
     action EditUserAction { userId } = do
