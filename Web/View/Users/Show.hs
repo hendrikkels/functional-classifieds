@@ -12,8 +12,11 @@ instance View ShowView ViewContext where
             </ol>
         </nav>
         <h1>Show User</h1>
-        <a href={NewListingAction (get #id user)}>Add Comment</a>
-        <div>{forEach (get #listings user) renderListing}</div>
+        <a href={NewListingAction (get #id user)}>Add Listing</a>
+        <hr/>
+        <div class="card-columns">
+            {forEach (get #listings user) renderListing}
+        </div>
     |]
 
 

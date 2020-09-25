@@ -6,16 +6,18 @@ data HomeView = HomeView {listings :: [Listing]}
 instance View HomeView ViewContext where
     html HomeView { .. } = do 
         case currentUserOrNothing of 
+            -- logged In
             Just currentUser -> [hsx|
+                <nav>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item active"><a href={UsersAction}>Users</a></li>
+                        <li class="breadcrumb-item active"><a href={ShowUserAction (get #id currentUser )}>View my listings</a></li>
+                    </ol>
+                </nav>
             <div class="row">
                 <div class="col">
                     <h1>Listings</h1>
-                        <nav>
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item active"><a href={UsersAction}>Users</a></li>
-                                <li class="breadcrumb-item active"><a href={ShowUserAction (get #id currentUser )}>View my listings</a></li>
-                            </ol>
-                        </nav>
+
                 </div>
             </div>
             <hr/>
@@ -23,6 +25,7 @@ instance View HomeView ViewContext where
                 {forM_ listings renderListing}
             </div>
             |]
+            -- Not Logged in
             Nothing -> [hsx|
             <div class="row">
                 <div class="col">

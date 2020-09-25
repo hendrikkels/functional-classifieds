@@ -15,8 +15,7 @@ instance Controller SessionsController where
     action NewSessionAction = Sessions.newSessionAction @User
 
     action ShowSessionAction = do 
-        let userId2 = (get #id currentUser)
-        redirectTo ShowUserAction { userId = userId2 }
+        renderPlain "This"
 
     action CreateSessionAction = Sessions.createSessionAction @User
 
