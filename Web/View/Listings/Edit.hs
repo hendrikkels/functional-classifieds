@@ -21,6 +21,5 @@ renderForm listing = formFor listing [hsx|
     {textField #title}
     {textField #description}
     {textField #price}
-    {textField #createdAt}
     {submitButton}
 |]

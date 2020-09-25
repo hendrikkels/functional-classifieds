@@ -3,7 +3,7 @@ import IHP.RouterPrelude
 import Generated.Types
 import Web.Types
 
-
+instance AutoRoute SessionsController
 
 -- Generator Marker
 instance AutoRoute PostsController
@@ -18,4 +18,3 @@ type instance ModelControllerMap WebApplication User = UsersController
 instance AutoRoute ListingsController
 type instance ModelControllerMap WebApplication Listing = ListingsController
 
-instance AutoRoute SessionsController

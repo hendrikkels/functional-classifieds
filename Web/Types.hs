@@ -55,6 +55,7 @@ data UsersController
 
 data SessionsController
     = NewSessionAction
+    | ShowSessionAction
     | CreateSessionAction
     | DeleteSessionAction
     | HomeAction
@@ -63,7 +64,7 @@ data SessionsController
 
 data ListingsController
     = ListingsAction
-    | NewListingAction 
+    | NewListingAction { userId :: !(Id User) }
     | ShowListingAction { listingId :: !(Id Listing) }
     | CreateListingAction
     | EditListingAction { listingId :: !(Id Listing) }

@@ -6,6 +6,7 @@ import Web.Types
 
 -- Controller Imports
 import Web.Controller.Listings
+import Web.Controller.Listings
 import Web.Controller.Users
 import Web.Controller.Comments
 import Web.Controller.Posts

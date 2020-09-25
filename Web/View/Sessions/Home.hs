@@ -4,15 +4,40 @@ import Web.View.Prelude
 data HomeView = HomeView {listings :: [Listing]}
 
 instance View HomeView ViewContext where
-    html HomeView { .. } = [hsx|
-        <h1>Listings</h1>
-        <div class="card-columns">
-            {forM_ listings renderListing}
-        </div>
-    |]
+    html HomeView { .. } = do 
+        case currentUserOrNothing of 
+            Just currentUser -> [hsx|
+            <div class="row">
+                <div class="col">
+                    <h1>Listings</h1>
+                        <nav>
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item active"><a href={UsersAction}>Users</a></li>
+                                <li class="breadcrumb-item active"><a href={ShowUserAction (get #id currentUser )}>View my listings</a></li>
+                            </ol>
+                        </nav>
+                </div>
+            </div>
+            <hr/>
+            <div class="card-columns">
+                {forM_ listings renderListing}
+            </div>
+            |]
+            Nothing -> [hsx|
+            <div class="row">
+                <div class="col">
+                    <h1>Listings</h1>
+                </div>
+            </div>
+            <hr/>
+            <div class="card-columns">
+                {forM_ listings renderListing}
+            </div>
+            |]
 
 
-renderListing listing = [hsx|
+renderListing listing = 
+    [hsx|
     <div class="card">
         <img src="https://www.amityinternational.com/wp-content/uploads/2019/02/product-placeholder.jpg" class="card-img-top" alt="...">
         <div class="card-body">

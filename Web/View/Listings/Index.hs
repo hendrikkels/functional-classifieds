@@ -11,7 +11,6 @@ instance View IndexView ViewContext where
             </ol>
         </nav>
         <h1>Listings</h1>
-        <a href={NewListingAction}>Add Listing</a>
         <div class="table-responsive">
             <table class="table">
                 <thead>

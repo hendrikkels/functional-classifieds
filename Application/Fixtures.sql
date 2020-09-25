@@ -45,6 +45,7 @@ ALTER TABLE public.users ENABLE TRIGGER ALL;
 
 ALTER TABLE public.listings DISABLE TRIGGER ALL;
 
+INSERT INTO public.listings (id, user_id, title, description, price, created_at) VALUES ('ccdae7d2-7c9e-4b1f-81f9-94ff88d2131c', 'cb2d5b78-17f8-4e26-8755-f6ee4b18792e', 'Car', '7455546', 100, '1858-11-17 00:00:00+00');
 
 
 ALTER TABLE public.listings ENABLE TRIGGER ALL;

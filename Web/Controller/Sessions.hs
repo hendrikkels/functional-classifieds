@@ -13,7 +13,13 @@ instance Controller SessionsController where
         render HomeView { .. }
 
     action NewSessionAction = Sessions.newSessionAction @User
+
+    action ShowSessionAction = do 
+        let userId2 = (get #id currentUser)
+        redirectTo ShowUserAction { userId = userId2 }
+
     action CreateSessionAction = Sessions.createSessionAction @User
+
     action DeleteSessionAction = Sessions.deleteSessionAction @User
 
 instance Sessions.SessionsControllerConfig User where

@@ -8,14 +8,15 @@ import Web.View.Listings.Show
 
 instance Controller ListingsController where
     action ListingsAction = do
-        listings <- query @Listing |> fetch
+        listings <- query @Listing 
+            |> orderByDesc #createdAt
+            |> fetch
         render IndexView { .. }
 
-    action NewListingAction = do
-        ensureIsUser
-        let userId = (get #id currentUser)
+    action NewListingAction { userId } = do
         let listing = newRecord
                 |> set #userId userId
+        user <- fetch userId
         render NewView { .. }
 
     action ShowListingAction { listingId } = do
@@ -42,7 +43,9 @@ instance Controller ListingsController where
         listing
             |> buildListing
             |> ifValid \case
-                Left listing -> render NewView { .. } 
+                Left listing -> do 
+                    user <- fetch (get #userId listing)
+                    render NewView { .. } 
                 Right listing -> do
                     listing <- listing |> createRecord
                     setSuccessMessage "Listing created"
@@ -55,4 +58,4 @@ instance Controller ListingsController where
         redirectTo ListingsAction
 
 buildListing listing = listing
-    |> fill @["userId","title","description","price","createdAt"]
+    |> fill @["userId","title","description","price"]
