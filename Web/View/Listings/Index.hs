@@ -4,27 +4,33 @@ import Web.View.Prelude
 data IndexView = IndexView { listings :: [Listing] }
 
 instance View IndexView ViewContext where
-    html IndexView { .. } = [hsx|
-        <nav>
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item active"><a href={ListingsAction}>Listings</a></li>
-            </ol>
-        </nav>
-        <h1>Listings</h1>
-        <div class="table-responsive">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Listing</th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>{forEach listings renderListing}</tbody>
-            </table>
-        </div>
-    |]
+    html IndexView { .. } = do
+       case currentUserOrNothing of 
+            -- logged In
+            Just currentUser -> [hsx|
+            <div class="row">
+                <div class="col">
+                    <h1>Listings</h1>
+
+                </div>
+            </div>
+            <hr/>
+            <div class="card-columns">
+                {forM_ listings renderListingP}
+            </div>
+            |]
+            -- Not Logged in
+            Nothing -> [hsx|
+            <div class="row">
+                <div class="col">
+                    <h1>Listings</h1>
+                </div>
+            </div>
+            <hr/>
+            <div class="card-columns">
+                {forM_ listings renderListingP}
+            </div>
+            |]
 
 
 renderListing listing = [hsx|

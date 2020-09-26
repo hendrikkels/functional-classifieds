@@ -1,12 +1,14 @@
 module Web.Controller.Listings where
-
 import Web.Controller.Prelude
 import Web.View.Listings.Index
 import Web.View.Listings.New
 import Web.View.Listings.Edit
 import Web.View.Listings.Show
 
+import Database.PostgreSQL.Simple.Types
+
 instance Controller ListingsController where
+
     action ListingsAction = do
         listings <- query @Listing 
             |> orderByDesc #createdAt
@@ -49,13 +51,13 @@ instance Controller ListingsController where
                 Right listing -> do
                     listing <- listing |> createRecord
                     setSuccessMessage "Listing created"
-                    redirectTo ListingsAction
+                    redirectTo HomeAction
 
     action DeleteListingAction { listingId } = do
         listing <- fetch listingId
         deleteRecord listing
         setSuccessMessage "Listing deleted"
-        redirectTo ListingsAction
+        redirectTo HomeAction
 
 buildListing listing = listing
     |> fill @["userId","title","description","price"]

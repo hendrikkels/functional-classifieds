@@ -1,6 +1,7 @@
 module Web.View.Sessions.Home where
 import Web.View.Prelude
 
+
 data HomeView = HomeView {listings :: [Listing]}
 
 instance View HomeView ViewContext where
@@ -8,12 +9,6 @@ instance View HomeView ViewContext where
         case currentUserOrNothing of 
             -- logged In
             Just currentUser -> [hsx|
-                <nav>
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item active"><a href={UsersAction}>Users</a></li>
-                        <li class="breadcrumb-item active"><a href={ShowUserAction (get #id currentUser )}>View my listings</a></li>
-                    </ol>
-                </nav>
             <div class="row">
                 <div class="col">
                     <h1>Listings</h1>
@@ -22,7 +17,7 @@ instance View HomeView ViewContext where
             </div>
             <hr/>
             <div class="card-columns">
-                {forM_ listings renderListing}
+                {forM_ listings renderListingP}
             </div>
             |]
             -- Not Logged in
@@ -34,7 +29,7 @@ instance View HomeView ViewContext where
             </div>
             <hr/>
             <div class="card-columns">
-                {forM_ listings renderListing}
+                {forM_ listings renderListingP}
             </div>
             |]
 

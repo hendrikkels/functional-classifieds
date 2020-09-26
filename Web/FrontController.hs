@@ -5,6 +5,7 @@ import Generated.Types
 import Web.Types
 
 -- Controller Imports
+import Web.Controller.Search
 import Web.Controller.Listings
 import Web.Controller.Listings
 import Web.Controller.Users
@@ -20,6 +21,7 @@ instance FrontController WebApplication where
         [ startPage HomeAction
         , parseRoute @SessionsController
         -- Generator Marker
+        , parseRoute @SearchController
         , parseRoute @ListingsController
         , parseRoute @UsersController
         , parseRoute @CommentsController

@@ -8,7 +8,9 @@ import Web.Types
 import Web.Routes
 import qualified IHP.FrameworkConfig as FrameworkConfig
 import Config ()
-
+import Web.Types
+import Generated.Types
+import Application.Helper.View
 type Html = HtmlWithContext ViewContext
 
 defaultLayout :: Html -> Html
@@ -46,10 +48,10 @@ navbar = [hsx|
     <ul class="navbar-nav mr-auto">
       {sessionButtons}
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+   <li><form method="GET" id="searchForm" action="/NewSearch" class="form-inline my-2 my-lg-0">
+      <input name="searchText" id="searchText" class="form-control mr-sm-2" type="text" value="" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" onclick="document.getElementById('searchForm').submit()">Search</button>
+    </form></li>
   </div>
   </div>
 </nav>
@@ -59,7 +61,7 @@ sessionButtons :: Html
 sessionButtons = case (get #user viewContext) of
     Just user -> [hsx|
       <li class="nav-item">
-        <a class="js-delete js-delete-no-confirm nav-link" href="">My profile</a>
+        <a class="nav-link" href={ShowUserAction (get #id user )}>My Listings</a>
       </li>
       <li class="nav-item">
         <a class="js-delete js-delete-no-confirm nav-link" href={DeleteSessionAction}>Logout</a>
@@ -72,7 +74,7 @@ sessionButtons = case (get #user viewContext) of
         <a class="nav-link" href={NewSessionAction}>Login</a>
       </li>|]
 
-
+-- <script src="/helpers.js"></script>
 scripts = do
     when (isDevelopment FrameworkConfig.environment) [hsx|<script id="livereload-script" src="/livereload.js"></script>|]
     [hsx|
