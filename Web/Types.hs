@@ -71,3 +71,7 @@ data ListingsController
     | UpdateListingAction { listingId :: !(Id Listing) }
     | DeleteListingAction { listingId :: !(Id Listing) }
     deriving (Eq, Show, Data)
+
+data SearchController
+    = NewSearchAction {searchText :: Text}
+    deriving (Eq, Show, Data)
