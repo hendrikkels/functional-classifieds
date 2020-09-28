@@ -5,23 +5,7 @@ import qualified Text.MMark as MMark
 data HomeView = HomeView {listings :: [Listing]}
 
 instance View HomeView ViewContext where
-    html HomeView { .. } = do 
-        case currentUserOrNothing of 
-            -- logged In
-            Just currentUser -> [hsx|
-            <div class="row">
-                <div class="col">
-                    <h1>Listings</h1>
-
-                </div>
-            </div>
-            <hr/>
-            <div class="card-columns">
-                {forM_ listings renderListing}
-            </div>
-            |]
-            -- Not Logged in
-            Nothing -> [hsx|
+    html HomeView { .. } = [hsx|
             <div class="row">
                 <div class="col">
                     <h1>Listings</h1>

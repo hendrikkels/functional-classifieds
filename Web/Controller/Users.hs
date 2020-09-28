@@ -43,7 +43,8 @@ instance Controller UsersController where
             |> fill @["email", "passwordHash"]
             |> validateField #email isEmail
             |> validateField #passwordHash nonEmpty
-            |> ifValid \case
+            |> validateIsUnique #email
+            >>= ifValid \case
                 Left user -> render NewView { .. } 
                 Right user -> do
                     hashed <- hashPassword (get #passwordHash user)
@@ -51,7 +52,7 @@ instance Controller UsersController where
                         |> set #passwordHash hashed
                         |> createRecord
                     setSuccessMessage "You have registered successfully"
-                    redirectTo UsersAction
+                    redirectTo NewSessionAction
 
     action DeleteUserAction { userId } = do
         user <- fetch userId

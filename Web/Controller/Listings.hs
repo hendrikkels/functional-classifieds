@@ -23,6 +23,7 @@ instance Controller ListingsController where
 
     action ShowListingAction { listingId } = do
         listing <- fetch listingId
+        user <- fetch (get #userId listing)
         render ShowView { .. }
 
     action EditListingAction { listingId } = do

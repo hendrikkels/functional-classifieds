@@ -34,10 +34,10 @@ ALTER TABLE public.comments ENABLE TRIGGER ALL;
 
 ALTER TABLE public.users DISABLE TRIGGER ALL;
 
-INSERT INTO public.users (id, email, password_hash, locked_at, failed_login_attempts) VALUES ('aacc82f2-21b3-4be0-b3e4-bc0fbbf990af', 'fanie@oen.com', 'sha256|17|Euu1JQXbcU2ZAvz77C6z/g==|+iDUx36I+TP8+PKxWYC8RIRqag1+B9qDcBZPXcrOuRk=', NULL, 0);
 INSERT INTO public.users (id, email, password_hash, locked_at, failed_login_attempts) VALUES ('bc72ae92-51c2-4cae-9380-10746a28099e', 'admin@admin', 'sha256|17|RtofISSZkTy6SDV3TOrSeg==|ctPWQyOdyvtY8+0WxSHsu9AAQEFbYbRVweT8m6+IxDk=', NULL, 0);
-INSERT INTO public.users (id, email, password_hash, locked_at, failed_login_attempts) VALUES ('2a6b44da-2dad-4385-98d7-e58bb01f2a66', 'das@oen.com', 'sha256|17|S1UxLPCdpwtQJoHnDFhZfQ==|Kb3ZNBRXENqr5UFKjOoqF+aKfZKZcMOCaXfTtiPvbPg=', NULL, 0);
-INSERT INTO public.users (id, email, password_hash, locked_at, failed_login_attempts) VALUES ('cb2d5b78-17f8-4e26-8755-f6ee4b18792e', 'hi@bye.com', 'sha256|17|PV2aN6nTqgeFXzuHZRF8Gw==|GMh8xdWsPu8xof+oKl5VnF88b7ddU3uMuvAOY7nAvvc=', NULL, 0);
+INSERT INTO public.users (id, email, password_hash, locked_at, failed_login_attempts) VALUES ('e76461e3-cce5-4ad3-9b10-87a213c6628d', 'person@verkoop.com', 'sha256|17|chdL/kKpisEZT2mQtS6sJQ==|+xF4rCFLZuy5XRJwhhj00ToWVR/BqhDFVe+7xiuIZnw=', NULL, 0);
+INSERT INTO public.users (id, email, password_hash, locked_at, failed_login_attempts) VALUES ('7a90de2d-5cc8-4254-94fd-75eb2ae8e6a6', 'aaa@aaa', 'sha256|17|SGaPoXE0+v1JMkDpORVZAg==|TKnIunudKkIE3MoPKlyNkIiDEAFjzA5mVWCsO0gNSmQ=', NULL, 0);
+INSERT INTO public.users (id, email, password_hash, locked_at, failed_login_attempts) VALUES ('15a1e6b7-9021-41f1-92e5-796c0fb29e15', 'hi@bye.com', 'sha256|17|R0X6uY7lpN4fkMkJvJ3lLQ==|6R/hpKiM4bIeCZlm+x0r9B51hbntgVpAlJ4WOwJq4ts=', NULL, 0);
 
 
 ALTER TABLE public.users ENABLE TRIGGER ALL;
@@ -45,7 +45,6 @@ ALTER TABLE public.users ENABLE TRIGGER ALL;
 
 ALTER TABLE public.listings DISABLE TRIGGER ALL;
 
-INSERT INTO public.listings (id, user_id, title, description, price, created_at) VALUES ('ccdae7d2-7c9e-4b1f-81f9-94ff88d2131c', 'cb2d5b78-17f8-4e26-8755-f6ee4b18792e', 'Car', '7455546', 100, '1858-11-17 00:00:00+00');
 
 
 ALTER TABLE public.listings ENABLE TRIGGER ALL;
