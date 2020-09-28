@@ -1,5 +1,7 @@
 module Web.View.Sessions.Home where
 import Web.View.Prelude
+import Numeric
+import Text.Printf
 import qualified Text.MMark as MMark
 
 data HomeView = HomeView {listings :: [Listing]}
@@ -13,7 +15,7 @@ instance View HomeView ViewContext where
             </div>
             <hr/>
             <div class="card-columns">
-                {forM_ listings renderListing   }
+                {forM_ listings renderListingP   }
             </div>
             |]
 
@@ -24,7 +26,7 @@ renderListing listing =
         <img src="https://www.amityinternational.com/wp-content/uploads/2019/02/product-placeholder.jpg" class="card-img-top" alt="...">
         <div class="card-body">
             <h5 class="card-title">{get #title listing}</h5>
-            <h6 class="card-subtitle mb-2 text-muted">R{get #price listing}</h6>
+            <h6 class="card-subtitle mb-2 text-muted">R{(showFFloatAlt (Just 2) (get #price listing) "")}</h6>
             <p class="card-text">{get #description listing |> renderMarkdown}</p>
         </div>
         <div class="card-footer">
