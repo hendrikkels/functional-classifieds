@@ -1,6 +1,7 @@
 module Web.View.Listings.Show where
 import Web.View.Prelude
 import qualified Text.MMark as MMark
+import Numeric
 
 data ShowView = ShowView { listing :: Listing
                          , user :: User }
@@ -13,7 +14,7 @@ instance View ShowView ViewContext where
                 <div class="row no-gutters">
                     <div class="col-sm-12 col-md-8">
                         <h5 class="card-title">{get #title listing}</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">R{get #price listing}</h6>
+                        <h6 class="card-subtitle mb-2 text-muted">R{(showFFloatAlt (Just 2) (get #price listing) "")}</h6>
                         <div class="card-text">
                             {get #description listing |> renderMarkdown}
                         </div>
