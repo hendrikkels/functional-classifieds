@@ -7,7 +7,6 @@ instance View EditView ViewContext where
     html EditView { .. } = [hsx|
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href={ListingsAction}>Listings</a></li>
                 <li class="breadcrumb-item active">Edit Listing</li>
             </ol>
         </nav>
@@ -17,9 +16,9 @@ instance View EditView ViewContext where
 
 renderForm :: Listing -> Html
 renderForm listing = formFor listing [hsx|
-    {textField #userId}
+    {hiddenField #userId}
     {textField #title}
-    {textField #description}
+    {textareaField #description}
     {textField #price}
     {submitButton}
 |]

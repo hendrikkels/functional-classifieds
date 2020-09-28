@@ -48,10 +48,10 @@ navbar = [hsx|
     <ul class="navbar-nav mr-auto">
       {sessionButtons}
     </ul>
-   <li><form method="GET" id="searchForm" action="/NewSearch" class="form-inline my-2 my-lg-0">
+   <form method="GET" id="searchForm" action="/NewSearch" class="form-inline my-2 my-lg-0">
       <input name="searchText" id="searchText" class="form-control mr-sm-2" type="text" value="" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" onclick="document.getElementById('searchForm').submit()">Search</button>
-    </form></li>
+    </form>
   </div>
   </div>
 </nav>

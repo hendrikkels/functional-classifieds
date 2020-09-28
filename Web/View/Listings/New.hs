@@ -10,7 +10,6 @@ instance View NewView ViewContext where
     html NewView { .. } = [hsx|
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href={ListingsAction}>Listings</a></li>
                 <li class="breadcrumb-item active">New Listing</li>
             </ol>
         </nav>
@@ -22,7 +21,7 @@ renderForm :: Listing -> Html
 renderForm listing = formFor listing [hsx|
     {hiddenField #userId}
     {textField #title}
-    {textField #description}
+    {textareaField #description}
     {textField #price}
     {submitButton}
 |]

@@ -57,7 +57,7 @@ instance Controller ListingsController where
         listing <- fetch listingId
         deleteRecord listing
         setSuccessMessage "Listing deleted"
-        redirectTo HomeAction
+        redirectTo ShowUserAction { userId = get #userId listing } 
 
 buildListing listing = listing
     |> fill @["userId","title","description","price"]
